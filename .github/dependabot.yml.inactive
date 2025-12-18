@@ -1,0 +1,107 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: ":whale2:"
+    assignees:
+      - spixx
+    labels:
+      - ":whale2: Container"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+      versions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: ":snake:"
+    assignees:
+      - spixx
+    labels:
+      - ":snake: Python"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+      versions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: ":robot:"
+    assignees:
+      - spixx
+    labels:
+      - ":robot: Github-actions"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+      versions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: ":chipmunk:"
+    assignees:
+      - spixx
+    labels:
+      - ":chipmunk: Go"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+      versions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+...
