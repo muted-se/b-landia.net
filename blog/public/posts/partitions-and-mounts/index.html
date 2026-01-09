@@ -1,0 +1,1661 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>Partitions and mounts &middot; B-landia - Somewhat origianl yet again.</title>
+    <meta name="title" content="Partitions and mounts &middot; B-landia - Somewhat origianl yet again.">
+  
+
+  
+  
+    <meta name="description" content="A solid and secure way of using LVM and mounts to protect yourself.">
+  
+  
+    <meta name="keywords" content="mounts,security,linux,">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/partitions-and-mounts/">
+  
+
+  
+  
+    <meta name="author" content="Joakim Dellrud">
+  
+  
+    
+      
+        
+      
+    
+      
+        
+          <link href="https://github.com/spixx" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://cyberspace.online/spixx/" rel="me">
+        
+      
+    
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/posts/partitions-and-mounts/">
+  <meta property="og:site_name" content="B-landia - Somewhat origianl yet again.">
+  <meta property="og:title" content="Partitions and mounts">
+  <meta property="og:description" content="A solid and secure way of using LVM and mounts to protect yourself.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-01T00:00:00+00:00">
+    <meta property="article:tag" content="Mounts">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Linux">
+    <meta property="og:image" content="http://localhost:1313/posts/partitions-and-mounts/feature.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/partitions-and-mounts/feature.png">
+  <meta name="twitter:title" content="Partitions and mounts">
+  <meta name="twitter:description" content="A solid and secure way of using LVM and mounts to protect yourself.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.fcb6c90155caf6912f538626829c9737c4dfa0f5b8ba0d94b79aa69f1a247ac25fc8396a1e380a9e300dd1ae540bc94184537f3d0756c58658edd64639e479ad.css"
+    integrity="sha512-/LbJAVXK9pEvU4YmgpyXN8TfoPW4ug2Ut5qmnxokesJfyDlqHjgKnjAN0a5UC8lBhFN/PQdWxYZY7dZGOeR5rQ==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"
+    integrity="sha512-b0EXSzoFtoCCD&#43;CMrb&#43;l&#43;3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script>
+  
+  
+    
+    <script src="/js/a11y.min.7eeed9f7a6fe7c8aa3b999966484369eb1b5380455116fc15c2b407140f3c2e3b174fc00201797dba34e4d4013213736ae375c9bcf2d7ad1fadb224355d8d54d.js" integrity="sha512-fu7Z96b&#43;fIqjuZmWZIQ2nrG1OARVEW/BXCtAcUDzwuOxdPwAIBeX26NOTUATITc2rjdcm88tetH62yJDVdjVTQ=="></script>
+  
+  
+  
+  
+    
+    <script
+      type="text/javascript"
+      src="/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js"
+      integrity="sha512-mBTe6WFNMq61YjnRGO3&#43;IKzWIxQk&#43;bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.9df4fc14d50efcc9aa4cfc2b6f348e365f421f5ad491278f8f48c0360cf2f93f08882fda6da162d7ace8e5add57c2df4ac46bd3861306b1d4c452cd31f448d64.js"
+      integrity="sha512-nfT8FNUO/MmqTPwrbzSONl9CH1rUkSePj0jANgzy&#43;T8IiC/abaFi16zo5a3VfC30rEa9OGEwax1MRSzTH0SNZA=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "",
+    "name": "Partitions and mounts",
+    "headline": "Partitions and mounts",
+    
+    "abstract": "A solid and secure way of using LVM and mounts to protect yourself.",
+    "inLanguage": "en",
+    "url" : "http://localhost:1313/posts/partitions-and-mounts/",
+    "author" : {
+      "@type": "Person",
+      "name": "Joakim Dellrud"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-05-01T00:00:00\u002b00:00",
+    "datePublished": "2025-05-01T00:00:00\u002b00:00",
+    
+    "dateModified": "2025-05-01T00:00:00\u002b00:00",
+    
+    "keywords": ["mounts","security","linux"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2399"
+  }]
+  </script>
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between py-6 md:justify-start gap-x-3 pt-[2px] pr-2 md:pr-4 pb-[3px] pl-0">
+  
+  
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/" class="text-base font-medium">
+          B-landia - Somewhat origianl yet again.
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/posts/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="Blog"
+  title="">
+  
+  
+    <p class="text-base font-medium">
+      Blog
+    </p>
+  
+</a>
+
+
+
+      
+        
+  <a
+  href="/about/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="About"
+  title="About">
+  
+  
+    <p class="text-base font-medium">
+      About
+    </p>
+  
+</a>
+
+
+
+      
+    
+
+    
+
+    
+      <div class="flex items-center">
+    <button
+      id="desktop-a11y-toggle"
+      aria-label="Open accessibility panel"
+      aria-expanded="false"
+      type="button"
+      class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+      role="button"
+      aria-pressed="false">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3l0 50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6l0-50.1c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>
+</span>
+    </button>
+
+    <div id="desktop-a11y-overlay" class="fixed inset-0 z-500 hidden"></div>
+
+    <div
+      id="desktop-a11y-panel"
+      role="dialog"
+      aria-labelledby="desktop-a11y-panel-title"
+      class="a11y-panel-enter fixed hidden z-500 p-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 rounded-lg shadow-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
+      style="min-width: 20rem;">
+      <div class="flex items-center justify-between mb-6">
+        <h3
+          id="desktop-a11y-panel-title"
+          class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          Accessibility settings
+        </h3>
+        <button
+          id="desktop-a11y-close"
+          class="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+          aria-label="Close a11y panel">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-5">
+        
+        
+        
+        
+          
+        
+        
+          
+        
+          <div class="flex items-center justify-between">
+            <label for="desktop-disable-blur" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Disable blur
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="desktop-disable-blur">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="desktop-disable-images" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Disable background image
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="desktop-disable-images">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="desktop-underline-links" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Show link underline
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="desktop-underline-links">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="desktop-zen-mode" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Enable zen mode
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="desktop-zen-mode">
+            </div>
+          </div>
+
+
+        <div class="flex items-center justify-between">
+          <label
+            for="desktop-font-size-select"
+            class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+            Font size
+          </label>
+          <select
+            id="desktop-font-size-select"
+            class="border rounded-lg px-3 py-1.5 pr-8 text-neutral-900 text-sm dark:bg-neutral-700 dark:text-neutral-200 focus:ring-primary-500 focus:border-primary-500">
+            
+            
+              <option value="default">default</option>
+            
+              <option value="12px">12px</option>
+            
+              <option value="14px">14px</option>
+            
+              <option value="16px">16px</option>
+            
+              <option value="18px">18px</option>
+            
+              <option value="20px">20px</option>
+            
+              <option value="22px">22px</option>
+            
+              <option value="24px">24px</option>
+            
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+
+    
+      <div class="flex items-center">
+    <button
+      id="mobile-a11y-toggle"
+      aria-label="Open accessibility panel"
+      aria-expanded="false"
+      type="button"
+      class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+      role="button"
+      aria-pressed="false">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3l0 50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6l0-50.1c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>
+</span>
+    </button>
+
+    <div id="mobile-a11y-overlay" class="fixed inset-0 z-500 hidden"></div>
+
+    <div
+      id="mobile-a11y-panel"
+      role="dialog"
+      aria-labelledby="mobile-a11y-panel-title"
+      class="a11y-panel-enter fixed hidden z-500 p-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 rounded-lg shadow-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
+      style="min-width: 20rem;">
+      <div class="flex items-center justify-between mb-6">
+        <h3
+          id="mobile-a11y-panel-title"
+          class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          Accessibility settings
+        </h3>
+        <button
+          id="mobile-a11y-close"
+          class="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+          aria-label="Close a11y panel">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-5">
+        
+        
+        
+        
+          
+        
+        
+          
+        
+          <div class="flex items-center justify-between">
+            <label for="mobile-disable-blur" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Disable blur
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="mobile-disable-blur">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="mobile-disable-images" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Disable background image
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="mobile-disable-images">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="mobile-underline-links" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Show link underline
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="mobile-underline-links">
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="mobile-zen-mode" class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              Enable zen mode
+            </label>
+            <div class="ios-toggle">
+              <input type="checkbox" id="mobile-zen-mode">
+            </div>
+          </div>
+
+
+        <div class="flex items-center justify-between">
+          <label
+            for="mobile-font-size-select"
+            class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+            Font size
+          </label>
+          <select
+            id="mobile-font-size-select"
+            class="border rounded-lg px-3 py-1.5 pr-8 text-neutral-900 text-sm dark:bg-neutral-700 dark:text-neutral-200 focus:ring-primary-500 focus:border-primary-500">
+            
+            
+              <option value="default">default</option>
+            
+              <option value="12px">12px</option>
+            
+              <option value="14px">14px</option>
+            
+              <option value="16px">16px</option>
+            
+              <option value="18px">18px</option>
+            
+              <option value="20px">20px</option>
+            
+              <option value="22px">22px</option>
+            
+              <option value="24px">24px</option>
+            
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/posts/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="Blog"
+    title="">
+    
+    
+      <p class="text-bg font-bg">
+        Blog
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/about/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="About"
+    title="About">
+    
+    
+      <p class="text-bg font-bg">
+        About
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+  <script>
+    (function () {
+      var $mainmenu = $(".main-menu");
+      var path = window.location.pathname;
+      $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+        $(e).children("p").addClass("active");
+      });
+    })();
+  </script>
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+      
+      
+      
+      
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+    
+    
+      
+      
+    
+  
+
+
+
+
+
+    <div id="hero" class="h-[150px] md:h-[200px]"></div>
+  
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    
+    
+    
+    <img
+      id="background-image"
+      src="/posts/partitions-and-mounts/feature_hu_23b8946118c9d315.png"
+      alt="Partitions and mounts"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+      >
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
+
+  
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/background-blur.min.00a57c73ea12f2cab2980c3c3d649e89f6d82f190f74bbe2b67f2f5e39ab7d032ece47086400ca05396758aace13299da49aca43ea643d2625e62c506267a169.js"
+      integrity="sha512-AKV8c&#43;oS8sqymAw8PWSeifbYLxkPdLvitn8vXjmrfQMuzkcIZADKBTlnWKrOEymdpJrKQ&#43;pkPSYl5ixQYmehaQ=="
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="/posts/partitions-and-mounts/feature_hu_23b8946118c9d315.png"></script>
+  
+      
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Partitions and mounts
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2025-05-01T00:00:00&#43;00:00">1 May 2025</time><span class="px-2 text-primary-500">&middot;</span><span>2399 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
+  <span
+    id="zen-mode-button"
+    class="text-lg hover:text-primary-500"
+    title="Enable zen mode"
+    data-title-i18n-disable="Enable zen mode"
+    data-title-i18n-enable="Disable zen mode">
+    <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg></span></span>
+  </span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  
+
+  
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        <a class="relative mt-[0.5rem] me-2" href="/categories/guides/">
+          <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Guides
+  </span>
+</span>
+
+        </a>
+      
+    </div>
+  
+
+
+
+      </div>
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what">What</a></li>
+    <li><a href="#why-separating-mount-points-is-good-practice">Why separating mount-points is good practice?</a>
+      <ul>
+        <li><a href="#security-and-compliance-benefits">Security and compliance benefits</a></li>
+        <li><a href="#protection-against-mistakes-and-dumb-stuff">Protection against mistakes and dumb stuff</a></li>
+        <li><a href="#risks-are-also-a-thing-here">Risks are also a thing here</a></li>
+      </ul>
+    </li>
+    <li><a href="#in-conclusion">In conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what">What</a></li>
+    <li><a href="#why-separating-mount-points-is-good-practice">Why separating mount-points is good practice?</a>
+      <ul>
+        <li><a href="#security-and-compliance-benefits">Security and compliance benefits</a></li>
+        <li><a href="#protection-against-mistakes-and-dumb-stuff">Protection against mistakes and dumb stuff</a></li>
+        <li><a href="#risks-are-also-a-thing-here">Risks are also a thing here</a></li>
+      </ul>
+    </li>
+    <li><a href="#in-conclusion">In conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          <p>While some might think  that creating anything more then the one <code>root</code> partition is unnecessarily obscure or obtuse, for me, a Linux installation is not complete without a carefully planned partition scheme. The benefits are several, first and foremost you protect yourself against a single stupid application logging to much and filling your entire drive with some spammed <code>syslog</code> message. Secondly there is some security benefits since you can deny specific actions from being available to a unprivileged user in the system via <code>others</code> writable areas. It also simplifies restoration when a system has had failures,or as in my case: I have yet again reinstalled the Operating system and need to now dump all my stuff back into the <code>/home/</code> directories.</p>
+<p>The method we will use is to now break down the <code>what</code> and slowly work our way to the <code>why</code> and in the end we might end up understanding my train of thoughts in respect to why having several mount-points is a good thing.</p>
+<!-- more -->
+
+<h2 class="relative group">What
+    <div id="what" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>In most modern Desktop and Server Linux distributions today you will be allowed to partition your disk during installation, this is in essence a way to logically divide a hard-drive into smaller pieces with more narrow purposes. This allows us to split out the <code>/home</code> path so that it does not share storage with <code>/var/log</code> for instance. Using tools like <code>fdisk</code> you can both list and manipulate the partition table written to the early blocks of your storage medium. But since this is not 1990 you can also use more modern tooling such as LVM (or utilize cool filesystems like <a
+  href="https://en.wikipedia.org/wiki/ZFS"
+    target="_blank"
+  >ZFS</a> or <a
+  href="https://en.wikipedia.org/wiki/Btrfs"
+    target="_blank"
+  >BTRFS</a>) to instead create a virtual partition scheme. This is helpful since a <a
+  href="https://en.wikipedia.org/wiki/GUID_Partition_Table"
+    target="_blank"
+  >GPT</a> or even <a
+  href="https://en.wikipedia.org/wiki/Master_boot_record"
+    target="_blank"
+  >MBR</a> is not really flexible (you will still have a GPT scheme just that you will have only two or three partitions for <code>/boot</code>, <code>/boot/efi</code> and for the LVM).</p>
+<blockquote>
+<p>But wait! You think; this matters little on a laptop since the underlying drive will not change.</p>
+</blockquote>
+<p>This is a correct thought to have but there is not really a good reason to overly allocate storage space either. A modest setup can get by with a very small footprint and the only real storage requirements might be the <code>/home</code> partition.</p>
+<p>We will use my current laptop as a example of how it could be:</p>
+<pre tabindex="0"><code>NAME                                          MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+nvme0n1                                       259:0    0 238.5G  0 disk  
+└─nvme0n1p1                                   259:1    0 238.5G  0 part  
+  └─luks-00000000-0000-0000-0000-000000000000 253:0    0 238.5G  0 crypt 
+    ├─vg0-root                                253:1    0     8G  0 lvm   /
+    ├─vg0-swap                                253:2    0     4G  0 lvm   [SWAP]
+    ├─vg0-usr                                 253:3    0    16G  0 lvm   /usr
+    ├─vg0-var_lib_flatpak                     253:4    0    16G  0 lvm   /var/lib/flatpak
+    ├─vg0-var_log_audit                       253:5    0     1G  0 lvm   /var/log/audit
+    ├─vg0-var                                 253:6    0     4G  0 lvm   /var
+    ├─vg0-tmp                                 253:7    0     4G  0 lvm   /tmp
+    ├─vg0-var_log                             253:8    0     1G  0 lvm   /var/log
+    ├─vg0-var_cache                           253:9    0     4G  0 lvm   /var/cache
+    └─vg0-var_tmp                             253:10   0     4G  0 lvm   /var/tmp
+nvme1n1                                       259:2    0 931.5G  0 disk  
+├─nvme1n1p1                                   259:3    0     1G  0 part  /boot/efi
+├─nvme1n1p2                                   259:4    0     1G  0 part  /boot
+└─nvme1n1p3                                   259:5    0 929.5G  0 part  
+  └─luks-00000000-0000-0000-0000-000000000000 253:11   0 929.5G  0 crypt 
+    ├─vg1-opt                                 253:12   0    32G  0 lvm   /opt
+    └─vg1-home                                253:13   0   512G  0 lvm   /home
+</code></pre><p>Note here that I have two separate NVME drives (nvme0n1 and nvme1n1) which are used for Operating system related storage and storage for my personal data. Furthermore the above <code>lsblk</code> output tells us that I have a Encrypted partition and some un-encrypted partitions. This is what is called &ldquo;encrypted LVM&rdquo; which is basically three partitions, one for <code>/boot</code> (nvme1n1p1), one for <code>/boot/efi</code> (nvme1n1p2) and a third for a LUKS encrypted partition (nvme1n1p3) containing a Logical Volume Group.</p>
+<p>We can summarise this saying that we have three old-school partitions and inside of the encrypted third partition we have a Logical Volume Group containing our actual Operating system and personal files. We can also see that there are several logical volumes in both a <code>vg0</code> and <code>vg1</code>. Each mounted to a specific path in the Operating System (Flags always include defaults and noatime):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Path</th>
+          <th>Size</th>
+          <th>Flags (fstab)</th>
+          <th>Function</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/</td>
+          <td>8 GiB</td>
+          <td></td>
+          <td>Root partition</td>
+      </tr>
+      <tr>
+          <td>/usr</td>
+          <td>16 GiB</td>
+          <td></td>
+          <td>System binaries and libraries</td>
+      </tr>
+      <tr>
+          <td>/var/lib/flatpak</td>
+          <td>16 GiB</td>
+          <td>nosuid,nodev</td>
+          <td>System flatpak storage</td>
+      </tr>
+      <tr>
+          <td>/var/log/audit</td>
+          <td>1 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Audit logs</td>
+      </tr>
+      <tr>
+          <td>/var</td>
+          <td>4 GiB</td>
+          <td>nosuid,nodev</td>
+          <td>Variable data</td>
+      </tr>
+      <tr>
+          <td>/var/log</td>
+          <td>1 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>System logs (syslog)</td>
+      </tr>
+      <tr>
+          <td>/var/cache</td>
+          <td>4 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Cached files</td>
+      </tr>
+      <tr>
+          <td>/var/tmp</td>
+          <td>4 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Temporary Files</td>
+      </tr>
+      <tr>
+          <td>/tmp</td>
+          <td>4 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Temporary Files</td>
+      </tr>
+      <tr>
+          <td>/opt</td>
+          <td>32 GiB</td>
+          <td>nosuid,nodev</td>
+          <td>External packages</td>
+      </tr>
+      <tr>
+          <td>Swap</td>
+          <td>4 GiB</td>
+          <td></td>
+          <td>System SWAP space</td>
+      </tr>
+      <tr>
+          <td>/home</td>
+          <td>X GiB</td>
+          <td>nosuid,nodev</td>
+          <td>User files and binaries</td>
+      </tr>
+      <tr>
+          <td>/dev/shm</td>
+          <td>N/A</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Shared memory area</td>
+      </tr>
+      <tr>
+          <td>/run</td>
+          <td>N/A</td>
+          <td>nosuid,nodev</td>
+          <td>Runtime information</td>
+      </tr>
+      <tr>
+          <td>/dev</td>
+          <td>N/A</td>
+          <td>nosuid,noexec</td>
+          <td>Devices and pseudo devices</td>
+      </tr>
+      <tr>
+          <td>/boot</td>
+          <td>1 GiB</td>
+          <td>nosuid,nodev,noexec</td>
+          <td>Boot files</td>
+      </tr>
+  </tbody>
+</table>
+<p>If you look back at the output from <code>lsblk</code> you can see that I have used the larger drive to be in a Logical Volume Group named <code>vg1</code> and the smaller drive to be in <code>vg0</code> which separates the user-data further from the system data. You can also see my mistake in having (somewhat illogically) the <code>/boot</code> and <code>/boot/efi</code> on the second drive <code>¯\_(ツ)_/¯</code>.</p>
+
+<h2 class="relative group">Why separating mount-points is good practice?
+    <div id="why-separating-mount-points-is-good-practice" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-separating-mount-points-is-good-practice" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>As mentioned in the ingress there are two major reasons to actually do this, first being able to add <code>noexec,nodev,nosuid</code> to mount-points to protect against malicious actors, secondly to prevent either user-mistakes or run-away issues from eating up all disk-space for the entire machine.</p>
+
+<h3 class="relative group">Security and compliance benefits
+    <div id="security-and-compliance-benefits" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#security-and-compliance-benefits" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>The scheme adds the ability to follow the principles of least privileges by restricting certain types of actions within critical mount-points from being available. It also acts as a initial barrier to any malicious actor that has managed to get a foot-hold on the machine from easily escalating their privileges. There is also the issue of most individuals not understanding that having just one big mount-point for <code>root</code> leaves them vulnerable and the guides and setup of most operating systems does not inform of the risk and potential benefits of utilising this type of schema to separate their mount-points. There is also some security/compliance standards that require this to be the case, not only because they like to be draconian but because it is a way of removing low-hanging fruits from any attackers.</p>
+
+<h3 class="relative group">Protection against mistakes and dumb stuff
+    <div id="protection-against-mistakes-and-dumb-stuff" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#protection-against-mistakes-and-dumb-stuff" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>The other major benefit is that you are now protected from a single log-file growing due to random reasons and filling your drive up. It might sound innocent but on a database server this can be catastrophic when it occurs. This type of knowledge comes from experiencing getting a notification during on-call that the drive is full and the subsequent head-scratching and curses this leads to.</p>
+
+<h3 class="relative group">Risks are also a thing here
+    <div id="risks-are-also-a-thing-here" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#risks-are-also-a-thing-here" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>One thing to keep in mind is that using a lean mount-point schema you also is at risk of having allocated to little. In my templates there is usually 40 GiB of allocated storage for the defaults. Due to the flexible nature of LVM this is usually not an issue but if you are a bit cheap and allow only 512 MiB for your <code>/boot</code> you might be in a world of hurt when it comes time to expand a actual GPT partition.</p>
+
+<h2 class="relative group">In conclusion
+    <div id="in-conclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#in-conclusion" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Using a somewhat over-complex/overcompensating partition and mount-point scheme brings many benefits and even if there are several draw-backs in the end having a basic hardening of the operating systems data-storage in place removes some of the venues that a attacker might utilise. This is not a guide since there are several things that requires consideration since the example here is for a Desktop rather then a Server. Still the complexity added is actually low unless you utilise Ubuntu since Canonical still leans on using partitions rather then LVM.</p>
+<p>I did also ask Google&rsquo;s Gemini to fact-check me to ensure I am not just making things up as I go along;</p>
+<blockquote>
+<p>What reasons are there and what recommendations does exist for adding noexec,nodev or nosuid to mouint points in the FSTAB file in linux? Specify reasons for, what mount-points should have which flags and find good facts to back up this</p>
+</blockquote>
+<p>Okay, let&rsquo;s break down the <code>noexec</code>, <code>nodev</code>, and <code>nosuid</code> mount options in Linux&rsquo;s <code>/etc/fstab</code> file. These options are primarily used for security hardening by restricting potentially dangerous actions on specific filesystems.</p>
+<p><strong>Understanding the Flags</strong></p>
+<ol>
+<li>
+<p><strong><code>nosuid</code> (No Set User ID)</strong></p>
+<ul>
+<li><strong>What it does:</strong> Prevents Set-User-ID (SUID) and Set-Group-ID (SGID) bits from taking effect on executables within the mounted filesystem. Normally, an executable with the SUID bit set runs with the privileges of the file&rsquo;s owner (often <code>root</code>), not the user who executed it. SGID makes it run with the group privileges of the file&rsquo;s group.</li>
+<li><strong>Reason for use (Security):</strong> This is a crucial security measure to prevent privilege escalation. If an attacker compromises a user account and manages to place or modify a SUID/SGID binary (especially one owned by <code>root</code>) on a partition mounted <em>without</em> <code>nosuid</code>, they could execute it to gain elevated privileges (e.g., root access). Disabling SUID/SGID effectively neutralizes this common attack vector on partitions where users might have write access or where untrusted files could land.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>nodev</code> (No Devices)</strong></p>
+<ul>
+<li><strong>What it does:</strong> Prevents the interpretation of character or block special device files on the mounted filesystem. Device files (like <code>/dev/sda</code>, <code>/dev/random</code>, <code>/dev/mem</code>) provide interfaces to hardware or kernel functions.</li>
+<li><strong>Reason for use (Security):</strong> Creating or accessing device files requires specific privileges, but if an attacker could somehow create a malicious device file (e.g., one pointing to raw disk memory) on a partition mounted <em>without</em> <code>nodev</code>, they might be able to use it to bypass security controls, access sensitive data directly, or crash the system. This option prevents files on the partition from being treated as device interfaces.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>noexec</code> (No Execute)</strong></p>
+<ul>
+<li><strong>What it does:</strong> Prevents the direct execution of <em>binary</em> executables residing on the mounted filesystem. The execute permission bits on files are ignored for binaries.</li>
+<li><strong>Important Note:</strong> This often <em>does not</em> prevent the execution of scripts (like Shell, Python, Perl) if the interpreter itself resides on a partition mounted <em>with</em> execute permissions (e.g., <code>/bin/bash</code>, <code>/usr/bin/python</code>). You could still run <code>sh /path/to/script.sh</code> even if <code>/path/to/</code> is on a <code>noexec</code> partition. However, it stops direct execution like <code>./myprogram</code>.</li>
+<li><strong>Reason for use (Security):</strong> This adds a layer of defense against malware execution. If an attacker manages to upload a malicious compiled program (binary) onto a partition mounted with <code>noexec</code> (like <code>/tmp</code>), they cannot directly run it from that location. They would need to move it to an executable partition first, which might be prevented by other controls.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Recommendations: Which Flags on Which Mount Points?</strong></p>
+<p>The general principle is <strong>least privilege</strong>: a filesystem should only be mounted with the capabilities necessary for its intended purpose.</p>
+<p>Here are common recommendations, often found in security guides like the CIS Benchmarks:</p>
+<ol>
+<li>
+<p><strong><code>/tmp</code></strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults,nosuid,nodev,noexec</code></li>
+<li><strong>Rationale:</strong> <code>/tmp</code> is world-writable and designed for temporary files. It&rsquo;s a prime target for attackers to store malicious scripts, binaries, device files, or SUID exploits. Disabling all three (<code>nosuid</code>, <code>nodev</code>, <code>noexec</code>) significantly hardens this volatile area. Legitimate applications generally don&rsquo;t need to execute binaries directly from <code>/tmp</code>, create devices there, or rely on SUID files within it. <em>Note: Some poorly written installers or applications might try to execute from <code>/tmp</code>, so <code>noexec</code> can occasionally cause compatibility issues, requiring investigation.</em></li>
+</ul>
+</li>
+<li>
+<p><strong><code>/var/tmp</code></strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults,nosuid,nodev,noexec</code></li>
+<li><strong>Rationale:</strong> Similar to <code>/tmp</code>, but often persists across reboots. The same security concerns apply, making it a target for dropped malware or exploit tools. The same hardening flags are strongly recommended.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>/dev/shm</code> (Shared Memory)</strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults,nosuid,nodev,noexec</code></li>
+<li><strong>Rationale:</strong> This is a <code>tmpfs</code> (RAM-based filesystem) used for POSIX shared memory. It&rsquo;s typically used for Inter-Process Communication (IPC), not for storing regular executables, device files, or SUID programs. Applying these flags prevents potential misuse of this memory-backed filesystem.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>/home</code> (If a separate partition)</strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults,nodev,nosuid</code> (<code>noexec</code> is often <em>not</em> recommended here)</li>
+<li><strong>Rationale:</strong>
+<ul>
+<li><code>nodev</code>: Users should generally never need to create device files within their home directories. Enabling <code>nodev</code> prevents potential misuse.</li>
+<li><code>nosuid</code>: Prevents users from introducing SUID/SGID binaries into their home directories (or having downloaded malware gain root via SUID if placed there). This is a significant security benefit on multi-user systems.</li>
+<li><code>noexec</code>: This is <em>controversial and often problematic</em> for <code>/home</code>. Users often need to execute scripts or compile and run legitimate software within their home directories. Applying <code>noexec</code> breaks this common workflow and can cause major usability issues. It&rsquo;s generally only used in very high-security, restricted environments.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Removable Media (USB drives, external HDDs - often handled by <code>udisks</code> or automounters, not static fstab)</strong></p>
+<ul>
+<li><strong>Recommended Flags (if manually configured or via udev rules):</strong> <code>noexec,nosuid,nodev,nofail,user</code> (or <code>users</code>)</li>
+<li><strong>Rationale:</strong> External media is inherently untrusted. It could contain malware, SUID exploits, or malicious device files. Applying all three restrictions significantly reduces the risk when mounting unknown devices. <code>nofail</code> prevents boot issues if the device isn&rsquo;t present, and <code>user</code>/<code>users</code> allows regular users to mount/unmount.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>/boot</code> (If a separate partition)</strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults,nosuid,nodev,noexec</code> (Optional but good practice)</li>
+<li><strong>Rationale:</strong> Contains the kernel, initramfs, and bootloader config. No execution, device files, or SUID binaries should ever be needed here during normal operation. Adding these flags adds a minor layer of integrity protection, although write access is usually restricted to root anyway.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>/</code>, <code>/usr</code>, <code>/var</code> (excluding <code>/var/tmp</code>), <code>/opt</code></strong></p>
+<ul>
+<li><strong>Recommended Flags:</strong> <code>defaults</code> (Generally <em>do not</em> add <code>noexec</code>, <code>nodev</code>, <code>nosuid</code>)</li>
+<li><strong>Rationale:</strong> These partitions contain the core operating system, essential system binaries (many requiring <code>exec</code>), libraries, potentially legitimate SUID binaries (like <code>passwd</code>, <code>sudo</code>, <code>ping</code>), and system data. Applying <code>noexec</code> or <code>nosuid</code> here would break the system fundamentally. <code>nodev</code> is usually unnecessary as device creation is typically restricted to <code>/dev</code>.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Facts and Justification</strong></p>
+<ul>
+<li><strong>Defense in Depth:</strong> These options provide additional security layers. Even if one control fails (e.g., an application vulnerability allows file upload), <code>noexec</code> or <code>nosuid</code> might prevent the subsequent exploitation or privilege escalation step.</li>
+<li><strong>Principle of Least Privilege:</strong> Filesystems should only grant the minimum necessary permissions. If execution isn&rsquo;t needed (<code>/tmp</code>), don&rsquo;t allow it. If device nodes aren&rsquo;t needed (<code>/home</code>), disable them.</li>
+<li><strong>Compliance and Benchmarks:</strong> Security standards like the CIS (Center for Internet Security) Benchmarks for various Linux distributions explicitly recommend using <code>nosuid</code>, <code>nodev</code>, and <code>noexec</code> on partitions like <code>/tmp</code>, <code>/var/tmp</code>, and <code>/dev/shm</code>. They often recommend <code>nodev</code> and <code>nosuid</code> for <code>/home</code> as well. Following these benchmarks is common practice in security-conscious environments.</li>
+<li><strong>Preventing Common Attack Vectors:</strong> Exploits often rely on writing to world-writable areas like <code>/tmp</code> and then executing code or using SUID binaries from there. These flags directly counter such common techniques.</li>
+</ul>
+
+          
+          
+          
+        </div>
+        
+          
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Joakim Dellrud"
+        src="/images/headshot_hu_f82ac84d466b1bc2.png"
+        data-zoom-src="/images/headshot_hu_981d24fa5a45763.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Author
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Joakim Dellrud
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">My name is Joakim Dellrud and I am a IT individual by day and geek by night. I utilize this space to write things I feel like writing about, technology, books and general thoughts that I might have.</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:hello@your_domain.com"
+          target="_blank"
+          aria-label="Email"
+          title="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/spixx"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://cyberspace.online/spixx/"
+          target="_blank"
+          aria-label="Cyberspace"
+          title="Cyberspace"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-10"></div>
+  
+
+        
+        
+
+        
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_posts/partitions-and-mounts/index.md"
+          data-oid-likes="likes_posts/partitions-and-mounts/index.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/posts/the-question/">
+              <span class="leading-6">
+                To be or to not be&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2025-07-01T00:00:00&#43;00:00">1 July 2025</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+      
+      
+        
+          
+          
+      
+      
+      
+      <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 ">
+        <ul class="flex list-none flex-col sm:flex-row">
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/tags/"
+                title="Tags">
+                
+                Tags
+              </a>
+            </li>
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/categories/"
+                title="Categories">
+                
+                Categories
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          Copyright 2008-2025 - Joakim Dellrud
+      </p>
+    
+
+    
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

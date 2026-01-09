@@ -7,7 +7,8 @@
 #  |_|  |_|\__,_|\__\___|\__,_|                                                #
 #          In Torvalds we trust                                                #
 ################################################################################
-.venv
+.bash_history
+public/
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,backup,python,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,backup,python,dotenv

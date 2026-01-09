@@ -1,0 +1,28 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "B-landia - Somewhat origianl yet again."
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  #logo = "images/background.png"
+  #secondaryLogo = "images/background-alt.png"
+  description = "A place where I from time to time post things about Linux, Life or Nerdy stuff."
+  copyright = "Copyright 2008-2025 - Joakim Dellrud"
+
+[params.author]
+  name = "Joakim Dellrud"
+  email = "joakim@dellrud.se"
+  image = "images/headshot.png"
+  imageQuality = 96
+  headline = "A thought in the void"
+  bio = "My name is Joakim Dellrud and I am a IT individual by day and geek by night. I utilize this space to write things I feel like writing about, technology, books and general thoughts that I might have."
+   links = [
+     { email = "mailto:hello@your_domain.com" },
+     { github = "https://github.com/spixx" },
+     { cyberspace = "https://cyberspace.online/spixx/" }
+   ]

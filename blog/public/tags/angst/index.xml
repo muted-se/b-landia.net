@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Angst on B-landia - Somewhat origianl yet again.</title>
+    <link>http://localhost:1313/tags/angst/</link>
+    <description>Recent content in Angst on B-landia - Somewhat origianl yet again.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>joakim@dellrud.se (Joakim Dellrud)</managingEditor>
+    <webMaster>joakim@dellrud.se (Joakim Dellrud)</webMaster>
+    <copyright>Copyright 2008-2025 - Joakim Dellrud</copyright>
+    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/angst/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The Eloquence Paradox</title>
+      <link>http://localhost:1313/posts/the-eloquence-paradox/</link>
+      <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
+      <author>joakim@dellrud.se (Joakim Dellrud)</author>
+      <guid>http://localhost:1313/posts/the-eloquence-paradox/</guid>
+      <description>Sometimes I wish I was a epic fantasy author but I cannot write myself out of a weat bag.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/the-eloquence-paradox/feature.png" />
+    </item>
+    
+    <item>
+      <title>To be or to not be</title>
+      <link>http://localhost:1313/posts/the-question/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <author>joakim@dellrud.se (Joakim Dellrud)</author>
+      <guid>http://localhost:1313/posts/the-question/</guid>
+      <description>What is the best way to survive when the long-term becomes short-term</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/the-question/feature.png" />
+    </item>
+    
+  </channel>
+</rss>
