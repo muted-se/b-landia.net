@@ -1,0 +1,8 @@
+[submodule "themes/blowfish"]
+	path = themes/blowfish
+	url = https://github.com/nunocoracao/blowfish.git
+	branch = main
+[submodule "b-landia/themes/blowfish"]
+	path = b-landia/themes/blowfish
+	url = https://github.com/nunocoracao/blowfish.git
+	branch = main
