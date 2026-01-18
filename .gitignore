@@ -8,7 +8,7 @@
 #          In Torvalds we trust                                                #
 ################################################################################
 .bash_history
-public/
+blog/public/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,backup,python,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,backup,python,dotenv
@@ -322,5 +322,3 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
-
-# End of https://www.toptal.com/developers/gitignore/api/linux,backup,python,dotenv
