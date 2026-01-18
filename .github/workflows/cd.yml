@@ -43,6 +43,10 @@ jobs:
         run: |
           hugo \
             --minify \
+            --panicOnWarning \
+            --printPathWarnings \
+            --environment production \
+            --templateMetrics \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
