@@ -33,6 +33,8 @@ jobs:
 
       - name: Build
         id: build
+        env:
+          HOME: /hugo
         run: |
           hugo \
             --minify \
