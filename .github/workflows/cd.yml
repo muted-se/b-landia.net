@@ -41,6 +41,7 @@ jobs:
       - name: Build
         id: build
         run: |
+          cd blog
           hugo \
             --minify \
             --panicOnWarning \
