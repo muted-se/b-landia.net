@@ -9,6 +9,7 @@
 ################################################################################
 .bash_history
 blog/public/
+blog/resources/
 .vscode
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,backup,python,dotenv
